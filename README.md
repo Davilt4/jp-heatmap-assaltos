@@ -5,4 +5,3 @@
 
 - Diversar funcionalidade a serem implementadas.
 - Para executar, python -m app.main
-- Caso for fazer mudanças no dados.py, sempre executar ele antes de executar o main, pois ele muda o mapa.
