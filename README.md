@@ -3,5 +3,5 @@
 ## As latitudes e longitudes são aleatórias, portanto, haverá inconsistências no mapa em relação à página de estatísticas.
 
 
-- Diversar funcionalidade a serem implementadas.
+- Diversas funcionalidades a serem implementadas.
 - Para executar, python -m app.main
