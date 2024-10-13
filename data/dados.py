@@ -7,6 +7,7 @@ data = pd.read_csv("data/dados_assaltos_ficticios_simples.csv")
 
 data['Data'] = pd.to_datetime(data['Data'])
 data['Data_por_extenso'] = data['Data'].dt.strftime('%d de %B de %Y')
+data['Ano'] = data['Data'].dt.year
 
 # Funções para estatísticas.
 def porcentagem_bairros():
@@ -17,3 +18,8 @@ def data_com_mais_assaltos():
     dias_com_mais_assaltos = data['Data_por_extenso'].value_counts().to_dict()
     dicionario_fatiado = {chave: valor for chave, valor in dias_com_mais_assaltos.items() if valor > 2}
     return dicionario_fatiado
+
+def carregar_dados_por_ano(ano):
+    dados_filtrados = data[data['Ano'] == ano]
+    # Transformar em uma lista de dicionários
+    return dados_filtrados[['Latitude', 'Longitude', 'Ano']].to_dict(orient='records')
