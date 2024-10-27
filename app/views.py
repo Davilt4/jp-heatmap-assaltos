@@ -1,5 +1,5 @@
 from app.main import app
-from flask import render_template,url_for,jsonify
+from flask import render_template,url_for,jsonify,request
 from data.dados import porcentagem_bairros,data_com_mais_assaltos,data,carregar_dados_por_ano
 
 @app.route("/")
@@ -9,6 +9,10 @@ def home():
 @app.route('/estatisticas')
 def estatisticas():
     return render_template("estatisticas.html", porcentagem_bairros=porcentagem_bairros(), dicionario_fatiado=data_com_mais_assaltos())
+
+@app.route('/adicionar_assalto')
+def adicionar_assalto():
+    return render_template("adicionar_assalto.html")
 
 @app.route('/dados_json')
 def dados_json():
