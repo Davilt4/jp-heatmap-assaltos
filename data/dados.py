@@ -1,8 +1,10 @@
 import pandas as pd
 import locale
+from flask import request,render_template
 
 locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 
+    
 data = pd.read_csv("data/dados_assaltos_ficticios_simples.csv")
 
 data['Data'] = pd.to_datetime(data['Data'])
@@ -23,3 +25,15 @@ def carregar_dados_por_ano(ano):
     dados_filtrados = data[data['Ano'] == ano]
     # Transformar em uma lista de dicionários
     return dados_filtrados[['Latitude', 'Longitude', 'Ano']].to_dict(orient='records')
+
+def data_adicionar_assalto(barrio,latitude,longitude,data_extenso):
+    dados = {'Bairro': [barrio], 'Latitude': [latitude], 'Longitude': [longitude], 'Data_por_extenso': [data_extenso]}
+    with open('data/dados_assaltos_ficticios_simples.csv', 'a') as arquivo_csv:
+        arquivo_csv.write(dados['Data_por_extenso'][0] + ',' + dados['Bairro'][0] + ',Assalto,' + dados['Latitude'][0] + ',' + dados['Longitude'][0] + '\n')
+    
+    data = pd.read_csv("data/dados_assaltos_ficticios_simples.csv")
+
+    data['Data'] = pd.to_datetime(data['Data'])
+    data['Data_por_extenso'] = data['Data'].dt.strftime('%d de %B de %Y')
+    data['Ano'] = data['Data'].dt.year
+    
