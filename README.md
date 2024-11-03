@@ -4,4 +4,6 @@
 
 
 - Diversas funcionalidades a serem implementadas.
-- Para executar, python -m app.main
+- Para executar, python -m app.mai
+
+![Tela principal](imgs/Captura%20de%20tela%202024-11-03%20164926.png)
