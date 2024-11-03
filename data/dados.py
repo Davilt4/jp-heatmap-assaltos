@@ -4,12 +4,20 @@ from flask import request,render_template
 
 locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 
-    
+
+# Por enquanto irei deixar assim, depois só a função irá retornar o DataFrame.
 data = pd.read_csv("data/dados_assaltos_ficticios_simples.csv")
 
 data['Data'] = pd.to_datetime(data['Data'])
 data['Data_por_extenso'] = data['Data'].dt.strftime('%d de %B de %Y')
 data['Ano'] = data['Data'].dt.year
+
+def csv_to_dataframe():
+    data = pd.read_csv("data/dados_assaltos_ficticios_simples.csv")
+    data['Data'] = pd.to_datetime(data['Data'])
+    data['Data_por_extenso'] = data['Data'].dt.strftime('%d de %B de %Y')
+    data['Ano'] = data['Data'].dt.year    
+    return data
 
 # Funções para estatísticas.
 def porcentagem_bairros():
@@ -22,6 +30,7 @@ def data_com_mais_assaltos():
     return dicionario_fatiado
 
 def carregar_dados_por_ano(ano):
+    data = csv_to_dataframe()
     dados_filtrados = data[data['Ano'] == ano]
     # Transformar em uma lista de dicionários
     return dados_filtrados[['Latitude', 'Longitude', 'Ano']].to_dict(orient='records')

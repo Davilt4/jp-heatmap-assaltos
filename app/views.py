@@ -1,6 +1,6 @@
 from app.main import app
 from flask import render_template,url_for,jsonify,request,redirect
-from data.dados import porcentagem_bairros,data_com_mais_assaltos,data,carregar_dados_por_ano,data_adicionar_assalto
+from data.dados import porcentagem_bairros,data_com_mais_assaltos,data,carregar_dados_por_ano,data_adicionar_assalto,csv_to_dataframe
 
 @app.route("/")
 def home():
